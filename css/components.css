@@ -1,0 +1,171 @@
+/* ═══════════════════════════════════════════
+   AUTOADMIN — COMPONENTS.CSS
+   KPI color variants, tag overrides, etc.
+═══════════════════════════════════════════ */
+
+/* ─── KPI COLOR VARIANTS ─── */
+.kpi-icon.teal   { background: var(--accent-dim);  color: var(--accent); }
+.kpi-icon.green  { background: var(--green-dim);   color: var(--green); }
+.kpi-icon.orange { background: var(--orange-dim);  color: var(--orange); }
+.kpi-icon.rose   { background: var(--rose-dim);    color: var(--rose); }
+.kpi-icon.violet { background: var(--violet-dim);  color: var(--violet); }
+.kpi-icon.amber  { background: var(--amber-dim);   color: var(--amber); }
+
+/* ─── CARD ACCENT BARS ─── */
+.kpi-card.kpi-teal   { border-top: 3px solid var(--accent); }
+.kpi-card.kpi-green  { border-top: 3px solid var(--green); }
+.kpi-card.kpi-orange { border-top: 3px solid var(--orange); }
+.kpi-card.kpi-rose   { border-top: 3px solid var(--rose); }
+.kpi-card.kpi-violet { border-top: 3px solid var(--violet); }
+.kpi-card.kpi-amber  { border-top: 3px solid var(--amber); }
+
+/* ─── MINI STAT COLOR VARIANTS ─── */
+.mini-stat-icon.teal   { background: var(--accent-dim);  color: var(--accent); }
+.mini-stat-icon.green  { background: var(--green-dim);   color: var(--green); }
+.mini-stat-icon.amber  { background: var(--amber-dim);   color: var(--amber); }
+.mini-stat-icon.orange { background: var(--orange-dim);  color: var(--orange); }
+.mini-stat-icon.violet { background: var(--violet-dim);  color: var(--violet); }
+.mini-stat-icon.rose   { background: var(--rose-dim);    color: var(--rose); }
+
+/* ─── PROGRESS BAR ─── */
+.progress-bar-wrap {
+  width: 100%;
+  height: 6px;
+  background: var(--surface-3);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: var(--accent);
+  transition: width 0.6s var(--ease);
+}
+
+/* ─── DIVIDER ─── */
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 20px 0;
+}
+
+/* ─── DATA PILLS ─── */
+.pill {
+  display: inline-block;
+  padding: 3px 10px;
+  background: var(--surface-3);
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-3);
+}
+
+/* ─── INFO TOOLTIP ─── */
+[data-tooltip] {
+  position: relative;
+}
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--navy);
+  color: var(--text-1);
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 5px 9px;
+  border-radius: 6px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur);
+  z-index: 10;
+}
+[data-tooltip]:hover::after { opacity: 1; }
+
+/* ─── SKELETON LOADING ─── */
+.skeleton {
+  background: linear-gradient(90deg, var(--surface-3) 25%, var(--border) 50%, var(--surface-3) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+  border-radius: 6px;
+}
+@keyframes skeleton-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ─── CONFIRM DELETE DIALOG ─── */
+.confirm-body {
+  padding: 8px 0;
+}
+.confirm-body p {
+  font-size: 0.9rem;
+  color: #1a2a3a;
+  line-height: 1.5;
+}
+.confirm-body strong { color: var(--rose); }
+
+/* ─── CAR DETAIL CHIP ─── */
+.car-chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.car-chip-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+.car-chip-icon svg { width: 18px; height: 18px; }
+
+/* ─── FINANCIAMIENTO CARD ─── */
+.fin-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 16px;
+  font-size: 0.8rem;
+}
+.fin-details dt {
+  color: var(--text-3);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+}
+.fin-details dd {
+  font-weight: 600;
+  color: #0d1b2a;
+}
+
+/* ─── COLOR DOT ─── */
+.color-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 6px;
+  border: 1px solid rgba(0,0,0,0.1);
+  vertical-align: middle;
+}
+
+/* ─── YEAR TAG ─── */
+.year-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--navy);
+  color: var(--accent);
+  border-radius: 5px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+}

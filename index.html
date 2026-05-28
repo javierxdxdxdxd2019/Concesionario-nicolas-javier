@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoAdmin — Panel de Gestión</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/sidebar.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/tables.css" />
+</head>
+<body>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 40 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 20H34M6 20L9 12L14 8H26L31 12L34 20M6 20C6 21.1 5.1 22 4 22H2M34 20C34 21.1 34.9 22 36 22H38" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="11" cy="22" r="3" stroke="currentColor" stroke-width="2"/>
+          <circle cx="29" cy="22" r="3" stroke="currentColor" stroke-width="2"/>
+          <path d="M14 8L16 4H24L26 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <span class="logo-brand">Auto</span><span class="logo-admin">Admin</span>
+        <small>Concesionario</small>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <span class="nav-label">Principal</span>
+      <a href="#" class="nav-item active" data-section="dashboard">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.8"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.8"/></svg>
+        Dashboard
+      </a>
+      <span class="nav-label">Inventario</span>
+      <a href="#" class="nav-item" data-section="autos">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 17H3v-4l2.5-6h11L19 13v4h-2M5 17a2 2 0 104 0M5 17a2 2 0 014 0M15 17a2 2 0 104 0M15 17a2 2 0 014 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M3 13h18" stroke="currentColor" stroke-width="1.8"/></svg>
+        Autos
+        <span class="nav-badge" id="badge-autos">—</span>
+      </a>
+      <span class="nav-label">Personas</span>
+      <a href="#" class="nav-item" data-section="clientes">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="7" r="3" stroke="currentColor" stroke-width="1.8"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M16 11c1.66 0 3 1.34 3 3M19 20c0-1.1-.4-2.1-1-2.9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        Clientes
+        <span class="nav-badge" id="badge-clientes">—</span>
+      </a>
+      <span class="nav-label">Comercial</span>
+      <a href="#" class="nav-item" data-section="ventas">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M9 14l-4-4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 10h11a4 4 0 010 8h-1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        Ventas
+        <span class="nav-badge" id="badge-ventas">—</span>
+      </a>
+      <a href="#" class="nav-item" data-section="financiamiento">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M2 10h20" stroke="currentColor" stroke-width="1.8"/><path d="M6 15h4M16 15h2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        Financiamiento
+        <span class="nav-badge" id="badge-fin">—</span>
+      </a>
+      <span class="nav-label">Servicio</span>
+      <a href="#" class="nav-item" data-section="mantenimiento">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Mantenimiento
+        <span class="nav-badge" id="badge-mant">—</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="api-status" id="api-status">
+        <span class="status-dot"></span>
+        <span class="status-text">Conectando…</span>
+      </div>
+      <div class="sidebar-user">
+        <div class="user-avatar">AD</div>
+        <div class="user-info">
+          <span>Administrador</span>
+          <small>localhost:3000</small>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-content" id="main">
+
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="menu-toggle" id="menuToggle">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="breadcrumb">
+          <span id="breadcrumb-section">Dashboard</span>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button class="btn-refresh" id="btnRefresh" title="Actualizar datos">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 3v5h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <span class="topbar-date" id="topbar-date"></span>
+      </div>
+    </header>
+
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="loading-spinner"></div>
+      <p>Cargando datos…</p>
+    </div>
+
+    <section class="section active" id="section-dashboard">
+      <div class="section-header">
+        <h1>Dashboard <span>General</span></h1>
+        <p>Resumen en tiempo real del concesionario</p>
+      </div>
+
+      <div class="kpi-grid" id="kpiGrid"></div>
+
+      <div class="charts-row">
+        <div class="chart-card large">
+          <div class="chart-card-header">
+            <h3>Ingresos por Venta</h3>
+            <p>Precio de venta por transacción registrada</p>
+          </div>
+          <div class="chart-wrap"><canvas id="chartVentasPrecio"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <h3>Forma de Pago</h3>
+            <p>Distribución de ventas</p>
+          </div>
+          <div class="chart-wrap"><canvas id="chartFormaPago"></canvas></div>
+        </div>
+      </div>
+
+      <div class="charts-row">
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <h3>Autos por Marca</h3>
+            <p>Distribución del inventario</p>
+          </div>
+          <div class="chart-wrap"><canvas id="chartMarcas"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <h3>Estado del Inventario</h3>
+            <p>Disponibles vs Vendidos</p>
+          </div>
+          <div class="chart-wrap"><canvas id="chartEstado"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <h3>Mantenimientos</h3>
+            <p>Estado de órdenes de servicio</p>
+          </div>
+          <div class="chart-wrap"><canvas id="chartMant"></canvas></div>
+        </div>
+      </div>
+
+      <div class="recent-card">
+        <div class="chart-card-header">
+          <h3>Ventas Recientes</h3>
+          <button class="btn-link" data-section="ventas">Ver todas →</button>
+        </div>
+        <div id="recentVentas"></div>
+      </div>
+    </section>
+
+    <section class="section" id="section-autos">
+      <div class="section-header">
+        <h1>Gestión de <span>Autos</span></h1>
+        <p>Inventario completo del concesionario</p>
+      </div>
+      <div class="table-toolbar">
+        <input type="text" class="search-input" id="searchAutos" placeholder="Buscar por marca, modelo, color…" />
+        <button class="btn btn-primary" id="btnNewAuto">+ Nuevo Auto</button>
+      </div>
+      <div class="table-container" id="tableAutos"></div>
+    </section>
+
+    <section class="section" id="section-clientes">
+      <div class="section-header">
+        <h1>Gestión de <span>Clientes</span></h1>
+        <p>Base de clientes registrados</p>
+      </div>
+      <div class="table-toolbar">
+        <input type="text" class="search-input" id="searchClientes" placeholder="Buscar por nombre, cédula, email…" />
+        <button class="btn btn-primary" id="btnNewCliente">+ Nuevo Cliente</button>
+      </div>
+      <div class="table-container" id="tableClientes"></div>
+    </section>
+
+    <section class="section" id="section-ventas">
+      <div class="section-header">
+        <h1>Registro de <span>Ventas</span></h1>
+        <p>Historial de transacciones comerciales</p>
+      </div>
+
+      <div class="mini-stats" id="ventasStats"></div>
+
+      <div class="table-toolbar">
+        <input type="text" class="search-input" id="searchVentas" placeholder="Buscar por cliente, auto, forma de pago…" />
+        <button class="btn btn-primary" id="btnNewVenta">+ Nueva Venta</button>
+      </div>
+      <div class="table-container" id="tableVentas"></div>
+    </section>
+    
+    <section class="section" id="section-financiamiento">
+      <div class="section-header">
+        <h1>Control de <span>Financiamiento</span></h1>
+        <p>Créditos y planes de pago vigentes</p>
+      </div>
+      <div class="mini-stats" id="finStats"></div>
+      <div class="table-toolbar">
+        <input type="text" class="search-input" id="searchFin" placeholder="Buscar por entidad bancaria…" />
+        <button class="btn btn-primary" id="btnNewFin">+ Nuevo Financiamiento</button>
+      </div>
+      <div class="table-container" id="tableFin"></div>
+    </section>
+
+    <section class="section" id="section-mantenimiento">
+      <div class="section-header">
+        <h1>Órdenes de <span>Mantenimiento</span></h1>
+        <p>Servicio técnico y reparaciones</p>
+      </div>
+      <div class="mini-stats" id="mantStats"></div>
+      <div class="table-toolbar">
+        <input type="text" class="search-input" id="searchMant" placeholder="Buscar por descripción, estado…" />
+        <button class="btn btn-primary" id="btnNewMant">+ Nueva Orden</button>
+      </div>
+      <div class="table-container" id="tableMant"></div>
+    </section>
+
+  </main>
+
+
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal" id="modal">
+      <div class="modal-header">
+        <h2 id="modalTitle">Formulario</h2>
+        <button class="modal-close" id="modalClose">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="modalCancel">Cancelar</button>
+        <button class="btn btn-primary" id="modalSave">Guardar</button>
+      </div>
+    </div>
+  </div>
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="js/api.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
