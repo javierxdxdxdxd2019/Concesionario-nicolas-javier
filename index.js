@@ -6,11 +6,11 @@ app.use(cors());
 app.use(express.json());
 // ─── CONEXIÓN ────────────────────────────────────────────────
 const db = mysql.createPool({
-  host: 'zephyr.proxy.rlwy.net',
-  user: 'root',
-  password: 'gavjbCowtJYAWgjVbZQifaCvFKCGGStb',
-  database: 'railway',
-  port: 14753
+  host: 'biyesfuqjdodwbbymmhv-mysql.services.clever-cloud.com',
+  user: 'ufmbbr0qsofw4aey',
+  password: 'Bw1JF5bykYpzrsd4SghM',
+  database: 'biyesfuqjdodwbbymmhv',
+  port: 3306
 });
 
 db.getConnection((err, connection) => {
